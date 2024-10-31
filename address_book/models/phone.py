@@ -22,7 +22,7 @@ class Phone(Field):
         Raises:
             ValueError: If the phone number is invalid.
         """
-        self._value = None
+        self._value: str = ""
         self.value = value
 
     @property

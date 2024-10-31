@@ -22,7 +22,7 @@ class Name(Field):
         Raises:
             ValueError: If the name is an empty string.
         """
-        self._value = None
+        self._value: str = ""
         self.value = value
 
     @property

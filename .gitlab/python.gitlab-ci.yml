@@ -32,7 +32,7 @@ python:requirements:
     - pip freeze > requirements.txt
   artifacts:
     paths:
-      - requirements.txt
+      - $APP_DIR/requirements.txt
     expire_in: 1 week
 
 python:flake8:
