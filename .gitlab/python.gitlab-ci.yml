@@ -12,7 +12,7 @@ variables:
 stages:
   - python:lint
   - python:test
-  - pythin:quality
+  - python:quality
 
 default:
   image: python:3.11
@@ -36,7 +36,7 @@ python:requirements:
     expire_in: 1 week
 
 python:flake8:
-  stage: lint
+  stage: python:lint
   script:
     - pip install flake8
     - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -44,35 +44,35 @@ python:flake8:
   allow_failure: true
 
 python:black:
-  stage: lint
+  stage: python:lint
   script:
     - pip install black
     - black --check .
   allow_failure: true
 
 python:isort:
-  stage: lint
+  stage: python:lint
   script:
     - pip install isort
     - isort --check-only --diff .
   allow_failure: true
 
 python:mypy:
-  stage: test
+  stage: python:test
   script:
     - pip install mypy
     - mypy models/ main.py
   allow_failure: false
 
 python:bandit:
-  stage: quality
+  stage: python:quality
   script:
     - pip install bandit
     - bandit -r . -ll
   allow_failure: true
 
 python:radon:
-  stage: quality
+  stage: python:quality
   script:
     - pip install radon
     - radon cc . -a -nb
